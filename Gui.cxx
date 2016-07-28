@@ -36,8 +36,18 @@ Fl_Double_Window* Gui::make_window() {
       displayLog->color(FL_FOREGROUND_COLOR);
       displayLog->textcolor(FL_BACKGROUND2_COLOR);
     } // Fl_Text_Display* displayLog
-    { new Fl_Text_Display(4, 166, 521, 104);
-    } // Fl_Text_Display* o
+    { Fl_Output_Dnd* o = outputAttachments = new Fl_Output_Dnd(4, 166, 521, 104, "attachments:");
+      outputAttachments->box(FL_DOWN_FRAME);
+      outputAttachments->color(FL_BACKGROUND2_COLOR);
+      outputAttachments->selection_color(FL_SELECTION_COLOR);
+      outputAttachments->labeltype(FL_NORMAL_LABEL);
+      outputAttachments->labelfont(0);
+      outputAttachments->labelsize(14);
+      outputAttachments->labelcolor(FL_FOREGROUND_COLOR);
+      outputAttachments->align(Fl_Align(FL_ALIGN_TOP));
+      outputAttachments->when(FL_WHEN_RELEASE);
+      o->buffer(new Fl_Text_Buffer());
+    } // Fl_Output_Dnd* outputAttachments
     o->end();
   } // Fl_Double_Window* o
   return w;

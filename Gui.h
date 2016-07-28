@@ -3,6 +3,7 @@
 #ifndef Gui_h
 #define Gui_h
 #include <FL/Fl.H>
+#include "Fl_Output_Dnd.h"
 #include <FL/Fl_Double_Window.H>
 #include <FL/Fl_Input.H>
 #include <FL/Fl_Output.H>
@@ -23,5 +24,6 @@ private:
 public:
   Fl_Output *outputSubdir;
   Fl_Text_Display *displayLog;
+  Fl_Output_Dnd *outputAttachments;
 };
 #endif

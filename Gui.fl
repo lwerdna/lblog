@@ -5,6 +5,9 @@ code_name {.cxx}
 decl {\#include "logic.h"} {private global
 } 
 
+decl {\#include "Fl_Output_Dnd.h"} {public global
+} 
+
 decl {\#include <FL/Fl_Text_Buffer.h>} {private global
 } 
 
@@ -27,14 +30,17 @@ class Gui {open
         xywh {56 42 279 24}
       }
       Fl_Output outputSubdir {
-        label {subdir:} selected
+        label {subdir:}
         xywh {56 74 279 28} color 47
       }
       Fl_Text_Display displayLog {
         xywh {4 276 521 101} color 0 textcolor 7
       }
-      Fl_Text_Display {} {
+      Fl_Text_Display outputAttachments {
+        label {attachments:} selected
         xywh {4 166 521 104}
+        code0 {o->buffer(new Fl_Text_Buffer());}
+        class Fl_Output_Dnd
       }
     }
   }
