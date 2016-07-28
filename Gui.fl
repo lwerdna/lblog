@@ -5,7 +5,7 @@ code_name {.cxx}
 decl {\#include "logic.h"} {private global
 } 
 
-decl {\#include "Fl_Output_Dnd.h"} {public global
+decl {\#include "Fl_Browser_Dnd.h"} {public global
 } 
 
 decl {\#include <FL/Fl_Text_Buffer.h>} {private global
@@ -17,7 +17,7 @@ class Gui {open
   } {
     Fl_Window {} {
       label lblog open
-      xywh {743 174 533 382} type Double visible
+      xywh {705 134 533 382} type Double visible
     } {
       Fl_Input inputTime {
         label {time:}
@@ -36,11 +36,12 @@ class Gui {open
       Fl_Text_Display displayLog {
         xywh {4 276 521 101} color 0 textcolor 7
       }
-      Fl_Text_Display outputAttachments {
+      Fl_Browser outputAttachments {
         label {attachments:} selected
-        xywh {4 166 521 104}
-        code0 {o->buffer(new Fl_Text_Buffer());}
-        class Fl_Output_Dnd
+        xywh {4 166 521 104} align 5
+        code0 {o->type(FL_HOLD_BROWSER);}
+        code1 {o->callback(onBrowserClick);}
+        class Fl_Browser_Dnd
       }
     }
   }

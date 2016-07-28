@@ -6,8 +6,8 @@ LDSTATIC = $(shell fltk-config --use-images --ldstaticflags ) -lautils
 LINK     = $(CXX)
 
 TARGET = lblog
-OBJS_LBLOG = Gui.o logic.o Fl_Output_Dnd.o
-SRCS = Gui.cxx logic.cxx Fl_Output_Dnd.cxx
+OBJS_LBLOG = Gui.o logic.o Fl_Browser_Dnd.o
+SRCS = Gui.cxx logic.cxx Fl_Browser_Dnd.cxx
 
 # this is a pattern rule
 .SUFFIXES: .o .cxx

@@ -61,3 +61,10 @@ void onInputTitleChange(void)
     printf("%s()\n", __func__);
     updateSubdir();
 }
+
+void onBrowserClick(Fl_Widget* o, void *)
+{
+    printf("callback, selection = %d, event_clicks = %d\n",
+        ((Fl_Browser*)o)->value(), Fl::event_clicks());
+}
+
