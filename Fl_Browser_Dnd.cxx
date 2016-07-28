@@ -15,15 +15,15 @@ int Fl_Browser_Dnd::handle(int event)
     int rc = 0; /* 0 if not used or understood, 1 if event was used and can be deleted */
     switch(event) {
         case FL_DND_ENTER:
-            printf("on FL_DND_ENTER\n");
+            //printf("on FL_DND_ENTER\n");
             rc = 1;
             break;
         case FL_DND_DRAG:
-            printf("on FL_DND_DRAG\n");
+            //printf("on FL_DND_DRAG\n");
             rc = 1;
             break;
         case FL_DND_RELEASE:
-            printf("on FL_DND_RELEASE\n");
+            //printf("on FL_DND_RELEASE\n");
             rc = 1;
             break;
 

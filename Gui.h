@@ -6,8 +6,8 @@
 #include "Fl_Browser_Dnd.h"
 #include <FL/Fl_Double_Window.H>
 #include <FL/Fl_Input.H>
-#include <FL/Fl_Output.H>
-#include <FL/Fl_Text_Display.H>
+#include <FL/Fl_Browser.H>
+#include <FL/Fl_Button.H>
 
 class Gui {
 public:
@@ -22,8 +22,20 @@ private:
   inline void cb_inputTitle_i(Fl_Input*, void*);
   static void cb_inputTitle(Fl_Input*, void*);
 public:
-  Fl_Output *outputSubdir;
-  Fl_Text_Display *displayLog;
-  Fl_Browser_Dnd *outputAttachments;
+  Fl_Browser *displayLog;
+  Fl_Browser_Dnd *browserAttachments;
+private:
+  inline void cb_remove_i(Fl_Button*, void*);
+  static void cb_remove(Fl_Button*, void*);
+  inline void cb_64x64_i(Fl_Button*, void*);
+  static void cb_64x64(Fl_Button*, void*);
+  inline void cb_128x128_i(Fl_Button*, void*);
+  static void cb_128x128(Fl_Button*, void*);
+  inline void cb_x64_i(Fl_Button*, void*);
+  static void cb_x64(Fl_Button*, void*);
+  inline void cb_x128_i(Fl_Button*, void*);
+  static void cb_x128(Fl_Button*, void*);
+  inline void cb_add_i(Fl_Button*, void*);
+  static void cb_add(Fl_Button*, void*);
 };
 #endif

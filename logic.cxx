@@ -1,8 +1,19 @@
 #include <time.h>
 
+#include <string>
+
 #include "Gui.h"
 
 Gui *g_gui = NULL;
+
+std::string getAttachSelection(void)
+{
+    int lineNo = g_gui->browserAttachments->value();
+    if(lineNo == 0) return "";
+    const char *text = g_gui->browserAttachments->text(lineNo);
+    if(text == NULL) return "";
+    return std::string(text);
+}
 
 void updateSubdir(void)
 {
@@ -20,8 +31,10 @@ void updateSubdir(void)
             buf[dst++] = '_';
     }
     buf[dst] = '\0';
-
-    g_gui->outputSubdir->value(buf);
+    
+    std::string tmp("new blog file: ");
+    tmp += buf;
+    g_gui->displayLog->add(tmp.c_str());
 }
 
 void onGuiStart(Gui *gui)
@@ -41,8 +54,6 @@ void onGuiStart(Gui *gui)
 
     gui->inputTime->value(buf);
     gui->inputTitle->value("Awesome Topic!");
-
-    gui->outputSubdir->readonly(1);
 
     updateSubdir();
 }
@@ -66,5 +77,64 @@ void onBrowserClick(Fl_Widget* o, void *)
 {
     printf("callback, selection = %d, event_clicks = %d\n",
         ((Fl_Browser*)o)->value(), Fl::event_clicks());
+
+
 }
+
+void onBtnAttachRemove(void)
+{
+    int lineNo = g_gui->browserAttachments->value();
+    if(lineNo != 0) {
+        g_gui->browserAttachments->remove(lineNo);
+    }
+    else {
+        printf("ERROR: no selection to delete\n");
+    }
+}
+
+void addAttachmentResizeEntry(const char *suffix)
+{
+    std::string path = getAttachSelection();
+    if(path.empty()) {
+        printf("ERROR: empty selection, cannot resize\n");
+    }
+    else {
+        int idx = path.find_last_of(".");
+        if(idx == std::string::npos) {
+            printf("ERROR: expected image file to have extension\n");
+        }
+        else {
+            std::string base = path.substr(0, idx);
+            std::string ext = path.substr(idx+1);
+            std::string newPath = base + suffix + "." + ext;
+            g_gui->browserAttachments->add(newPath.c_str());
+        }
+    }
+}  
+
+void onBtnAttachResize64x64(void)
+{
+    addAttachmentResizeEntry("_64x64");
+}
+
+void onBtnAttachResize128x128(void)
+{
+    addAttachmentResizeEntry("_128x128");
+}
+
+void onBtnAttachResizeQQx64(void)
+{
+    addAttachmentResizeEntry("_QQx64");
+}
+
+void onBtnAttachResizeQQx128(void)
+{
+    addAttachmentResizeEntry("_QQx128");
+}
+
+void onBtnAttachAdd(void)
+{
+    g_gui->displayLog->add(__func__);
+}
+
 

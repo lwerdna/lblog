@@ -17,31 +17,55 @@ class Gui {open
   } {
     Fl_Window {} {
       label lblog open
-      xywh {705 134 533 382} type Double visible
+      xywh {705 134 530 401} type Double visible
     } {
       Fl_Input inputTime {
-        label {time:}
         callback {onInputTimeChange();}
-        xywh {56 10 279 24}
+        xywh {4 4 103 24}
       }
       Fl_Input inputTitle {
-        label {title:}
         callback {onInputTitleChange()}
-        xywh {56 42 279 24}
+        xywh {110 4 416 24}
       }
-      Fl_Output outputSubdir {
-        label {subdir:}
-        xywh {56 74 279 28} color 47
+      Fl_Browser displayLog {
+        xywh {4 295 521 101} color 0 textcolor 7
       }
-      Fl_Text_Display displayLog {
-        xywh {4 276 521 101} color 0 textcolor 7
-      }
-      Fl_Browser outputAttachments {
-        label {attachments:} selected
+      Fl_Browser browserAttachments {
+        label {attachments:}
         xywh {4 166 521 104} align 5
         code0 {o->type(FL_HOLD_BROWSER);}
         code1 {o->callback(onBrowserClick);}
         class Fl_Browser_Dnd
+      }
+      Fl_Button {} {
+        label remove
+        callback {onBtnAttachRemove();}
+        xywh {72 272 63 20}
+      }
+      Fl_Button {} {
+        label 64x64
+        callback {onBtnAttachResize64x64();}
+        xywh {140 272 63 20}
+      }
+      Fl_Button {} {
+        label 128x128
+        callback {onBtnAttachResize128x128();}
+        xywh {208 272 63 20}
+      }
+      Fl_Button {} {
+        label {??x64}
+        callback {onBtnAttachResizeQQx64();}
+        xywh {276 272 63 20}
+      }
+      Fl_Button {} {
+        label {??x128}
+        callback {onBtnAttachResizeQQx128();} selected
+        xywh {344 272 63 20}
+      }
+      Fl_Button {} {
+        label add
+        callback {onBtnAttachAdd();}
+        xywh {4 272 63 20}
       }
     }
   }

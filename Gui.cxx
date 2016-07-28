@@ -18,37 +18,94 @@ void Gui::cb_inputTitle(Fl_Input* o, void* v) {
   ((Gui*)(o->parent()->user_data()))->cb_inputTitle_i(o,v);
 }
 
+void Gui::cb_remove_i(Fl_Button*, void*) {
+  onBtnAttachRemove();
+}
+void Gui::cb_remove(Fl_Button* o, void* v) {
+  ((Gui*)(o->parent()->user_data()))->cb_remove_i(o,v);
+}
+
+void Gui::cb_64x64_i(Fl_Button*, void*) {
+  onBtnAttachResize64x64();
+}
+void Gui::cb_64x64(Fl_Button* o, void* v) {
+  ((Gui*)(o->parent()->user_data()))->cb_64x64_i(o,v);
+}
+
+void Gui::cb_128x128_i(Fl_Button*, void*) {
+  onBtnAttachResize128x128();
+}
+void Gui::cb_128x128(Fl_Button* o, void* v) {
+  ((Gui*)(o->parent()->user_data()))->cb_128x128_i(o,v);
+}
+
+void Gui::cb_x64_i(Fl_Button*, void*) {
+  onBtnAttachResizeQQx64();
+}
+void Gui::cb_x64(Fl_Button* o, void* v) {
+  ((Gui*)(o->parent()->user_data()))->cb_x64_i(o,v);
+}
+
+void Gui::cb_x128_i(Fl_Button*, void*) {
+  onBtnAttachResizeQQx128();
+}
+void Gui::cb_x128(Fl_Button* o, void* v) {
+  ((Gui*)(o->parent()->user_data()))->cb_x128_i(o,v);
+}
+
+void Gui::cb_add_i(Fl_Button*, void*) {
+  onBtnAttachAdd();
+}
+void Gui::cb_add(Fl_Button* o, void* v) {
+  ((Gui*)(o->parent()->user_data()))->cb_add_i(o,v);
+}
+
 Fl_Double_Window* Gui::make_window() {
   Fl_Double_Window* w;
-  { Fl_Double_Window* o = new Fl_Double_Window(533, 382, "lblog");
+  { Fl_Double_Window* o = new Fl_Double_Window(530, 401, "lblog");
     w = o;
     o->user_data((void*)(this));
-    { inputTime = new Fl_Input(56, 10, 279, 24, "time:");
+    { inputTime = new Fl_Input(4, 4, 103, 24);
       inputTime->callback((Fl_Callback*)cb_inputTime);
     } // Fl_Input* inputTime
-    { inputTitle = new Fl_Input(56, 42, 279, 24, "title:");
+    { inputTitle = new Fl_Input(110, 4, 416, 24);
       inputTitle->callback((Fl_Callback*)cb_inputTitle);
     } // Fl_Input* inputTitle
-    { outputSubdir = new Fl_Output(56, 74, 279, 28, "subdir:");
-      outputSubdir->color(FL_DARK1);
-    } // Fl_Output* outputSubdir
-    { displayLog = new Fl_Text_Display(4, 276, 521, 101);
+    { displayLog = new Fl_Browser(4, 295, 521, 101);
       displayLog->color(FL_FOREGROUND_COLOR);
       displayLog->textcolor(FL_BACKGROUND2_COLOR);
-    } // Fl_Text_Display* displayLog
-    { Fl_Browser_Dnd* o = outputAttachments = new Fl_Browser_Dnd(4, 166, 521, 104, "attachments:");
-      outputAttachments->box(FL_NO_BOX);
-      outputAttachments->color(FL_BACKGROUND2_COLOR);
-      outputAttachments->selection_color(FL_SELECTION_COLOR);
-      outputAttachments->labeltype(FL_NORMAL_LABEL);
-      outputAttachments->labelfont(0);
-      outputAttachments->labelsize(14);
-      outputAttachments->labelcolor(FL_FOREGROUND_COLOR);
-      outputAttachments->align(Fl_Align(FL_ALIGN_TOP_LEFT));
-      outputAttachments->when(FL_WHEN_RELEASE_ALWAYS);
+    } // Fl_Browser* displayLog
+    { Fl_Browser_Dnd* o = browserAttachments = new Fl_Browser_Dnd(4, 166, 521, 104, "attachments:");
+      browserAttachments->box(FL_NO_BOX);
+      browserAttachments->color(FL_BACKGROUND2_COLOR);
+      browserAttachments->selection_color(FL_SELECTION_COLOR);
+      browserAttachments->labeltype(FL_NORMAL_LABEL);
+      browserAttachments->labelfont(0);
+      browserAttachments->labelsize(14);
+      browserAttachments->labelcolor(FL_FOREGROUND_COLOR);
+      browserAttachments->align(Fl_Align(FL_ALIGN_TOP_LEFT));
+      browserAttachments->when(FL_WHEN_RELEASE_ALWAYS);
       o->type(FL_HOLD_BROWSER);
       o->callback(onBrowserClick);
-    } // Fl_Browser_Dnd* outputAttachments
+    } // Fl_Browser_Dnd* browserAttachments
+    { Fl_Button* o = new Fl_Button(72, 272, 63, 20, "remove");
+      o->callback((Fl_Callback*)cb_remove);
+    } // Fl_Button* o
+    { Fl_Button* o = new Fl_Button(140, 272, 63, 20, "64x64");
+      o->callback((Fl_Callback*)cb_64x64);
+    } // Fl_Button* o
+    { Fl_Button* o = new Fl_Button(208, 272, 63, 20, "128x128");
+      o->callback((Fl_Callback*)cb_128x128);
+    } // Fl_Button* o
+    { Fl_Button* o = new Fl_Button(276, 272, 63, 20, "?\?x64");
+      o->callback((Fl_Callback*)cb_x64);
+    } // Fl_Button* o
+    { Fl_Button* o = new Fl_Button(344, 272, 63, 20, "?\?x128");
+      o->callback((Fl_Callback*)cb_x128);
+    } // Fl_Button* o
+    { Fl_Button* o = new Fl_Button(4, 272, 63, 20, "add");
+      o->callback((Fl_Callback*)cb_add);
+    } // Fl_Button* o
     o->end();
   } // Fl_Double_Window* o
   return w;
