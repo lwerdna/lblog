@@ -1,3 +1,6 @@
+#include <string>
+#include <sstream>
+
 #include <FL/Fl.H>
 #include <FL/Fl_Output.H>
 #include <FL/Fl_Select_Browser.H>
@@ -28,13 +31,23 @@ int Fl_Browser_Dnd::handle(int event)
             break;
 
         case FL_PASTE:
+        {
             //printf("got paste event");
             printf("event text: %s\n", Fl::event_text());
             //printf("event length: %d\n", Fl::event_length());
-            add(Fl::event_text());
-    
+
+            // dragging a multiple file selection just concats the paths
+            // separated by newline, so we have to split them here
+            const char *wtf = Fl::event_text();
+            std::stringstream ss(wtf);
+            std::string line;
+            while(std::getline(ss, line, '\n')) {
+                add(line.c_str());
+            }
+
             rc = 1;
             break;
+        }
 
         default:
             while(0);

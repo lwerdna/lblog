@@ -16,16 +16,19 @@ class Gui {open
   Function {make_window()} {open
   } {
     Fl_Window {} {
-      label lblog open
-      xywh {705 134 530 401} type Double visible
+      label lblog open selected
+      xywh {273 164 530 401} type Double visible
     } {
       Fl_Input inputTime {
         callback {onInputTimeChange();}
-        xywh {4 4 103 24}
+        xywh {4 4 84 24}
       }
       Fl_Input inputTitle {
         callback {onInputTitleChange()}
-        xywh {110 4 416 24}
+        xywh {90 4 356 24}
+      }
+      Fl_Input inputTags {
+        xywh {448 4 79 24}
       }
       Fl_Browser displayLog {
         xywh {4 295 521 101} color 0 textcolor 7
@@ -59,7 +62,7 @@ class Gui {open
       }
       Fl_Button {} {
         label {??x128}
-        callback {onBtnAttachResizeQQx128();} selected
+        callback {onBtnAttachResizeQQx128();}
         xywh {344 272 63 20}
       }
       Fl_Button {} {

@@ -54,6 +54,7 @@ void onGuiStart(Gui *gui)
 
     gui->inputTime->value(buf);
     gui->inputTitle->value("Awesome Topic!");
+    gui->inputTags->value("tag1,tag2");
 
     updateSubdir();
 }

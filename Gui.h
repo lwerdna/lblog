@@ -22,6 +22,7 @@ private:
   inline void cb_inputTitle_i(Fl_Input*, void*);
   static void cb_inputTitle(Fl_Input*, void*);
 public:
+  Fl_Input *inputTags;
   Fl_Browser *displayLog;
   Fl_Browser_Dnd *browserAttachments;
 private:

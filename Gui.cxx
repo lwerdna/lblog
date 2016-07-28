@@ -65,12 +65,14 @@ Fl_Double_Window* Gui::make_window() {
   { Fl_Double_Window* o = new Fl_Double_Window(530, 401, "lblog");
     w = o;
     o->user_data((void*)(this));
-    { inputTime = new Fl_Input(4, 4, 103, 24);
+    { inputTime = new Fl_Input(4, 4, 84, 24);
       inputTime->callback((Fl_Callback*)cb_inputTime);
     } // Fl_Input* inputTime
-    { inputTitle = new Fl_Input(110, 4, 416, 24);
+    { inputTitle = new Fl_Input(90, 4, 356, 24);
       inputTitle->callback((Fl_Callback*)cb_inputTitle);
     } // Fl_Input* inputTitle
+    { inputTags = new Fl_Input(448, 4, 79, 24);
+    } // Fl_Input* inputTags
     { displayLog = new Fl_Browser(4, 295, 521, 101);
       displayLog->color(FL_FOREGROUND_COLOR);
       displayLog->textcolor(FL_BACKGROUND2_COLOR);
